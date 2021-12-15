@@ -7,7 +7,6 @@ import subprocess
 import sys
 import time
 
-
 # bidirectional class
 class bidirectional_iterator:
     def __init__(self, my_list):
