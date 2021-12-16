@@ -40,6 +40,26 @@ def natural_sort_key(s):
 
 ###
 
+# execute subprocess and format output
+
+def proc():
+   proc = subprocess.Popen(["crm_simulate", "-x", item], stdout=subprocess.PIPE, universal_newlines=True)
+   for line in proc.stdout:
+      print("   ", line.strip())
+
+###
+
+# item name output
+
+def name():
+   print (" #######################################################################")
+   print ()
+   print ("   Pacemaker transition file:   " + item)
+   print ()
+   print (" #######################################################################")
+
+###   
+
 # open rpm database and verify if "pacemaker-cli" package is installed
 print()
 
@@ -75,13 +95,9 @@ itr=iter(repeater)
 # First list item
 item = next(itr)
 os.system('clear')
-print()
-subprocess.run(["crm_simulate", "-x", item])
-print(" #######################################################################")
-print()
-print ("   Pacemaker transition file:   " + item)
-print()
-print(" #######################################################################")
+print ()
+proc() # function: proc
+name() # function: name 
 
 #print ("next: ", next(itr))
 #print ("prev: ", reversed(itr))
@@ -97,33 +113,25 @@ while True:
 #          print ("n pressed")
           item = next(itr)
           os.system('clear')
-          print()
-          subprocess.run(["crm_simulate", "-x", item])
-          print(" #######################################################################")
-          print()
-          print ("   Pacemaker transition file:   " + item)
-          print()
-          print(" #######################################################################")
+          print ()
+          proc() # function: proc
+          name() # function: name 
       elif user_input == "p" :
 #          print ("p pressed")
           item = reversed(itr)
           os.system('clear')
-          print()
-          subprocess.run(["crm_simulate", "-x", item])
-          print(" #######################################################################")
-          print()
-          print ("   Pacemaker transition file:   " + item)
-          print()
-          print(" #######################################################################")
+          print ()
+          proc() # function: proc
+          name() # function: name 
       elif user_input == "c" :
           os.system('clear')
-          print()
-          print(" #######################################################################")
-          print()
+          print ()
+          print (" #######################################################################")
+          print ()
           print ("   c pressed - Cu later :-)")
-          print()
-          print(" #######################################################################")
-          print()
+          print ()
+          print (" #######################################################################")
+          print ()
           break
    except StopIteration:
       break
