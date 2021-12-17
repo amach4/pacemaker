@@ -20,7 +20,9 @@ import time
 
 
 class bidirectional_iterator:
-    """step forward and backward depending on the current list element"""
+    """
+    step forward and backward depending on the current list element
+    """
     def __init__(self, my_list):
 #        self.data = ["MyData", "is", "here", "done"]
         self.data = my_list
@@ -44,7 +46,9 @@ class bidirectional_iterator:
 
 _nsre = re.compile('([0-9]+)')
 def natural_sort_key(s):
-   """natural sort""" 
+   """
+   natural sort
+   """
    return [int(text) if text.isdigit()
       else text.lower()
       for text in re.split(_nsre, s)
@@ -53,7 +57,9 @@ def natural_sort_key(s):
 ###
 
 def proc():
-   """execute subprocess and format output""" 
+   """
+   execute subprocess and format output
+   """
    proc = subprocess.Popen(["crm_simulate", "-x", item], stdout=subprocess.PIPE, universal_newlines=True)
    for line in proc.stdout:
       print("   ", line.strip())
@@ -61,10 +67,12 @@ def proc():
 ###
 
 def name():
-   """Item name output""" 
+   """
+   Item name output
+   """
    print (" #######################################################################")
    print ()
-   print ("   Pacemaker transition file:   " + item)
+   print ('\33[32m' + "   Pacemaker transition file:   " + item + '\33[0m' )
    print ()
    print (" #######################################################################")
 
