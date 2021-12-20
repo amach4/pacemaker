@@ -100,6 +100,7 @@ it = os.scandir(path)
 # search for files
 file_list = [ entry.name for entry in it if entry.name.startswith("pe-input") and entry.name.endswith(".bz2") and entry.is_file()]
 
+# verify if list is empty
 if len(file_list) == 0:
     print ()
     print("No such files, your list is empty!!!")#
