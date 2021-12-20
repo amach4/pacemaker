@@ -3,6 +3,7 @@
 # Name: cl-pe-input.py
 # Author: Andreas Mach
 # Date: 16-12-2021
+# Created with Python 3.6.12
 
 """This script was created to search for Pacemaker transition files in the current directory.
 The script is searching for files starting with "pe-input" and end with ".bz2".
@@ -23,10 +24,11 @@ class bidirectional_iterator:
     """
     step forward and backward depending on the current list element
     """
-    def __init__(self, my_list):
-#        self.data = ["MyData", "is", "here", "done"]
+#    def __init__(self):
+    def __init__(self, my_list, start_item):
+#        self.data = ["erste", "1", "MyData", "is", "here", "done"]
         self.data = my_list
-        self.index = -1
+        self.index = start_item_index
 
     def __iter__(self):
         return self
@@ -105,11 +107,18 @@ it.close()
 
 ###
 
-repeater = bidirectional_iterator(file_list)
-itr=iter(repeater)
+# Ask for initial list item
+print ()
+print ()
+start_item = input('   Enter Pacemaker transition file name ( Example: "pe-input-20.bz2" ):   ')
+print ()
+print ()
 
-# First list item
-item = next(itr)
+start_item_index = file_list.index(start_item)
+repeater = bidirectional_iterator(file_list, start_item)
+itr=iter(repeater)
+item = start_item
+
 os.system('clear')
 print ()
 proc() # function: proc
@@ -128,6 +137,8 @@ while True:
       if user_input == "n" :
 #          print ("n pressed")
           item = next(itr)
+#          item = next(itr)
+#           item = "pe-input-301.bz2"
           os.system('clear')
           print ()
           proc() # function: proc
