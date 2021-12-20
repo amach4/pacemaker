@@ -114,10 +114,11 @@ it.close()
 ###
 
 # Ask for initial list item
+os.system('clear')
 print ()
+print ('   Please enter initial Pacemaker transition file name ( Example: "pe-input-20.bz2" ).')
 print ()
-start_item = input('   Enter Pacemaker transition file name ( Example: "pe-input-20.bz2" ):   ')
-print ()
+start_item = input('   Filename:   ')
 print ()
 
 start_item_index = file_list.index(start_item)
