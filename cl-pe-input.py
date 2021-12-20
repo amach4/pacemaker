@@ -70,7 +70,7 @@ def proc():
 
 def name():
    """
-   Item name output
+   item name output
    """
    print (" #######################################################################")
    print ()
@@ -114,7 +114,7 @@ it.close()
 
 ###
 
-# Ask for initial list item
+# ask for initial list item
 os.system('clear')
 print ()
 print ('   Please enter initial Pacemaker transition file name ( Example: "pe-input-20.bz2" ).')
