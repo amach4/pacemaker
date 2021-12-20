@@ -132,8 +132,6 @@ print ()
 proc() # function: proc
 name() # function: name 
 
-#print ("next: ", next(itr))
-#print ("prev: ", reversed(itr))
 
 while True:
 
@@ -145,8 +143,6 @@ while True:
       if user_input == "n" :
 #          print ("n pressed")
           item = next(itr)
-#          item = next(itr)
-#           item = "pe-input-301.bz2"
           os.system('clear')
           print ()
           proc() # function: proc
