@@ -24,9 +24,10 @@ class bidirectional_iterator:
     """
     step forward and backward depending on the current list item
     """
-#    def __init__(self):
+
+    #    def __init__(self):
     def __init__(self, my_list, start_item):
-#        self.data = ["erste", "1", "MyData", "is", "here", "done"]
+        #        self.data = ["erste", "1", "MyData", "is", "here", "done"]
         self.data = my_list
         self.index = start_item_index
 
@@ -44,100 +45,130 @@ class bidirectional_iterator:
         if self.index == -1:
             raise StopIteration
         return self.data[self.index]
+
+
 ###
 
-_nsre = re.compile('([0-9]+)')
+_nsre = re.compile("([0-9]+)")
+
+
 def sort(s):
     """
     natural sort
     """
-    return [int(text) if text.isdigit()
-       else text.lower()
-       for text in re.split(_nsre, s)
+    return [
+        int(text) if text.isdigit() else text.lower() for text in re.split(_nsre, s)
     ]
 
+
 ###
+
 
 def proc():
     """
     execute subprocess and crm_simulate afterwards format output
     """
-    proc = subprocess.Popen(["/usr/sbin/crm_simulate", crm_opt, "-x", item], stdout=subprocess.PIPE, universal_newlines=True)
+    proc = subprocess.Popen(
+        ["/usr/sbin/crm_simulate", crm_opt, "-x", item],
+        stdout=subprocess.PIPE,
+        universal_newlines=True,
+    )
     for line in proc.stdout:
-       print("   ", line.strip())
+        print("   ", line.strip())
+
 
 ###
+
 
 def name():
     """
     Item name output
     """
-    print (" #######################################################################")
-    print ()
-    print ('\33[32m' + "   Pacemaker transition file:   " + item + '\33[0m' )
-    print ()
-    print (" #######################################################################")
+    print(" #######################################################################")
+    print()
+    print("\33[32m" + "   Pacemaker transition file:   " + item + "\33[0m")
+    print()
+    print(" #######################################################################")
 
-###   
+
+###
 
 # open rpm database and verify if "pacemaker-cli" package is installed
 print()
 ts = rpm.TransactionSet()
-mi = ts.dbMatch( 'name', 'pacemaker-cli' )
-try :
+mi = ts.dbMatch("name", "pacemaker-cli")
+try:
     h = mi.__next__()
-    print ("%s-%s-%s.%s" % (h['name'].decode(), h['version'].decode(), h['release'].decode(), h['arch'].decode()))
+    print(
+        "%s-%s-%s.%s"
+        % (
+            h["name"].decode(),
+            h["version"].decode(),
+            h["release"].decode(),
+            h["arch"].decode(),
+        )
+    )
 except StopIteration:
-    print ("Package not found")
+    print("Package not found")
 print()
 
 ###
 
 # search for files only in the current directory which start with "pe-input" and end with ".bz2" and sort them by digits in the file name
-path = '.'
+path = "."
 it = os.scandir(path)
 
 # search for files
-file_list = [ entry.name for entry in it if entry.name.startswith("pe-input") and entry.name.endswith(".bz2") and entry.is_file()]
+file_list = [
+    entry.name
+    for entry in it
+    if entry.name.startswith("pe-input")
+    and entry.name.endswith(".bz2")
+    and entry.is_file()
+]
 
 if len(file_list) == 0:
-    print ()
-    print("No such files, your list is empty!!!")#
-    print ()
+    print()
+    print("No such files, your list is empty!!!")  #
+    print()
     exit()
 
 # sort files
-file_list.sort(key = sort)
+file_list.sort(key=sort)
 
-it.close()      
+it.close()
 
 ###
 
 # Ask for initial list item
-os.system('clear')
-print ()
-print ('   Please enter initial Pacemaker transition file name ( Example: "pe-input-20.bz2" ).')
-print ()
-start_item = input('   Filename:   ')
-print ()
+os.system("clear")
+print()
+print(
+    '   Please enter initial Pacemaker transition file name ( Example: "pe-input-20.bz2" ).'
+)
+print()
+start_item = input("   Filename:   ")
+print()
 
 # Ask for crm_simulate option
-os.system('clear')
-print ()
-print ('   Please enter "crm_simulate" option - without only the standard option "-x" is used: ( Example: "-s" ).')
-print ()
+os.system("clear")
+print()
+print(
+    '   Please enter "crm_simulate" option - without only the standard option "-x" is used: ( Example: "-s" ).'
+)
+print()
 crm_opt = input('   Option (Press "Enter" to leave it blank):   ')
-print ()
+print()
 
 start_item_index = file_list.index(start_item)
 repeater = bidirectional_iterator(file_list, start_item)
-itr=iter(repeater)
+itr = iter(repeater)
 item = start_item
 
-os.system('clear')
-print ()
-proc() # function: proc
-name() # function: name 
+os.system("clear")
+print()
+proc()  # function: proc
+name()  # function: name
 
 ###
 
@@ -148,27 +179,32 @@ while True:
     print()
 
     try:
-        if user_input == "n" :
-           item = next(itr)
-           os.system('clear')
-           print ()
-           proc() # function: proc
-           name() # function: name 
-        elif user_input == "p" :
-           item = reversed(itr)
-           os.system('clear')
-           print ()
-           proc() # function: proc
-           name() # function: name 
-        elif user_input == "c" :
-           os.system('clear')
-           print ()
-           print (" #######################################################################")
-           print ()
-           print ("   c pressed - Cu later \33[32m :-) \33[0m")
-           print ()
-           print (" #######################################################################")
-           print ()
-           break
+        if user_input == "n":
+            item = next(itr)
+            os.system("clear")
+            print()
+            proc()  # function: proc
+            name()  # function: name
+        elif user_input == "p":
+            item = reversed(itr)
+            os.system("clear")
+            print()
+            proc()  # function: proc
+            name()  # function: name
+        elif user_input == "c":
+            os.system("clear")
+            print()
+            print(
+                " #######################################################################"
+            )
+            print()
+            print("   c pressed - Cu later \33[32m :-) \33[0m")
+            print()
+            print(
+                " #######################################################################"
+            )
+            print()
+            break
     except StopIteration:
-       break
+        break
+
