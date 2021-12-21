@@ -22,7 +22,7 @@ import time
 
 class bidirectional_iterator:
     """
-    step forward and backward depending on the current list element
+    step forward and backward depending on the current list item
     """
 #    def __init__(self):
     def __init__(self, my_list, start_item):
@@ -47,7 +47,7 @@ class bidirectional_iterator:
 ###
 
 _nsre = re.compile('([0-9]+)')
-def natural_sort_key(s):
+def sort(s):
    """
    natural sort
    """
@@ -60,9 +60,9 @@ def natural_sort_key(s):
 
 def proc():
    """
-   execute subprocess and format output
+   execute subprocess and crm_simulate afterwards format output
    """
-   proc = subprocess.Popen(["crm_simulate", "-x", item], stdout=subprocess.PIPE, universal_newlines=True)
+   proc = subprocess.Popen(["/usr/sbin/crm_simulate", crm_opt, "-x", item], stdout=subprocess.PIPE, universal_newlines=True)
    for line in proc.stdout:
       print("   ", line.strip())
 
@@ -70,7 +70,7 @@ def proc():
 
 def name():
    """
-   item name output
+   Item name output
    """
    print (" #######################################################################")
    print ()
@@ -100,7 +100,6 @@ it = os.scandir(path)
 # search for files
 file_list = [ entry.name for entry in it if entry.name.startswith("pe-input") and entry.name.endswith(".bz2") and entry.is_file()]
 
-# verify if list is empty
 if len(file_list) == 0:
     print ()
     print("No such files, your list is empty!!!")#
@@ -108,18 +107,26 @@ if len(file_list) == 0:
     exit()
 
 # sort files
-file_list.sort(key = natural_sort_key)
+file_list.sort(key = sort)
 
 it.close()      
 
 ###
 
-# ask for initial list item
+# Ask for initial list item
 os.system('clear')
 print ()
 print ('   Please enter initial Pacemaker transition file name ( Example: "pe-input-20.bz2" ).')
 print ()
 start_item = input('   Filename:   ')
+print ()
+
+# Ask for crm_simulate option
+os.system('clear')
+print ()
+print ('   Please enter "crm_simulate" option: ( Example: "-s" ).')
+print ()
+crm_opt = input('   Option:   ')
 print ()
 
 start_item_index = file_list.index(start_item)
@@ -132,6 +139,7 @@ print ()
 proc() # function: proc
 name() # function: name 
 
+###
 
 while True:
 
@@ -143,6 +151,8 @@ while True:
       if user_input == "n" :
 #          print ("n pressed")
           item = next(itr)
+#          item = next(itr)
+#           item = "pe-input-301.bz2"
           os.system('clear')
           print ()
           proc() # function: proc
