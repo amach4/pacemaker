@@ -124,9 +124,9 @@ print ()
 # Ask for crm_simulate option
 os.system('clear')
 print ()
-print ('   Please enter "crm_simulate" option: ( Example: "-s" ).')
+print ('   Please enter "crm_simulate" option - without only the standard option "-x" is used: ( Example: "-s" ).')
 print ()
-crm_opt = input('   Option:   ')
+crm_opt = input('   Option (Press "Enter" to leave it blank):   ')
 print ()
 
 start_item_index = file_list.index(start_item)
