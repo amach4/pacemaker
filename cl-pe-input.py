@@ -48,35 +48,35 @@ class bidirectional_iterator:
 
 _nsre = re.compile('([0-9]+)')
 def sort(s):
-   """
-   natural sort
-   """
-   return [int(text) if text.isdigit()
-      else text.lower()
-      for text in re.split(_nsre, s)
-   ]
+    """
+    natural sort
+    """
+    return [int(text) if text.isdigit()
+       else text.lower()
+       for text in re.split(_nsre, s)
+    ]
 
 ###
 
 def proc():
-   """
-   execute subprocess and crm_simulate afterwards format output
-   """
-   proc = subprocess.Popen(["/usr/sbin/crm_simulate", crm_opt, "-x", item], stdout=subprocess.PIPE, universal_newlines=True)
-   for line in proc.stdout:
-      print("   ", line.strip())
+    """
+    execute subprocess and crm_simulate afterwards format output
+    """
+    proc = subprocess.Popen(["/usr/sbin/crm_simulate", crm_opt, "-x", item], stdout=subprocess.PIPE, universal_newlines=True)
+    for line in proc.stdout:
+       print("   ", line.strip())
 
 ###
 
 def name():
-   """
-   Item name output
-   """
-   print (" #######################################################################")
-   print ()
-   print ('\33[32m' + "   Pacemaker transition file:   " + item + '\33[0m' )
-   print ()
-   print (" #######################################################################")
+    """
+    Item name output
+    """
+    print (" #######################################################################")
+    print ()
+    print ('\33[32m' + "   Pacemaker transition file:   " + item + '\33[0m' )
+    print ()
+    print (" #######################################################################")
 
 ###   
 
@@ -143,36 +143,32 @@ name() # function: name
 
 while True:
 
-   print()
-   user_input = input("   Press: p (previous) or n (next) or c (cancel) :    ")
-   print()
+    print()
+    user_input = input("   Press: p (previous) or n (next) or c (cancel) :    ")
+    print()
 
-   try:
-      if user_input == "n" :
-#          print ("n pressed")
-          item = next(itr)
-#          item = next(itr)
-#           item = "pe-input-301.bz2"
-          os.system('clear')
-          print ()
-          proc() # function: proc
-          name() # function: name 
-      elif user_input == "p" :
-#          print ("p pressed")
-          item = reversed(itr)
-          os.system('clear')
-          print ()
-          proc() # function: proc
-          name() # function: name 
-      elif user_input == "c" :
-          os.system('clear')
-          print ()
-          print (" #######################################################################")
-          print ()
-          print ("   c pressed - Cu later \33[32m :-) \33[0m")
-          print ()
-          print (" #######################################################################")
-          print ()
-          break
-   except StopIteration:
-      break
+    try:
+        if user_input == "n" :
+           item = next(itr)
+           os.system('clear')
+           print ()
+           proc() # function: proc
+           name() # function: name 
+        elif user_input == "p" :
+           item = reversed(itr)
+           os.system('clear')
+           print ()
+           proc() # function: proc
+           name() # function: name 
+        elif user_input == "c" :
+           os.system('clear')
+           print ()
+           print (" #######################################################################")
+           print ()
+           print ("   c pressed - Cu later \33[32m :-) \33[0m")
+           print ()
+           print (" #######################################################################")
+           print ()
+           break
+    except StopIteration:
+       break
