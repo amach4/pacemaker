@@ -100,7 +100,7 @@ mi = ts.dbMatch("name", "pacemaker-cli")
 try:
     h = mi.__next__()
     print(
-        "%s-%s-%s.%s"
+            "   pacemaker-cli version installed: %s-%s-%s.%s"
         % (
             h["name"].decode(),
             h["version"].decode(),
@@ -119,6 +119,9 @@ path = "."
 it = os.scandir(path)
 
 # search for files
+
+print("   ... creating file list ... keep smiling :-) ")
+
 file_list = [
     entry.name
     for entry in it
