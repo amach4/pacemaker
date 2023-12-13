@@ -102,10 +102,10 @@ try:
     print(
             "   pacemaker-cli version installed: %s-%s-%s.%s"
         % (
-            h["name"].decode(),
-            h["version"].decode(),
-            h["release"].decode(),
-            h["arch"].decode(),
+            h["name"],
+            h["version"],
+            h["release"],
+            h["arch"],
         )
     )
 except StopIteration:
