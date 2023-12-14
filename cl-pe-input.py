@@ -97,16 +97,14 @@ def name():
 print()
 ts = rpm.TransactionSet()
 mi = ts.dbMatch("name", "pacemaker-cli")
-
-ts = rpm.TransactionSet()
-mi = ts.dbMatch("name", "pacemaker-cli")
 try:
     h = mi.__next__()
-    print( "   pacemaker-cli version installed: %s-%s-%s.%s" % (h["name"], h["version"], h["release"], h["arch"],	)
-    )
+    print( "   pacemaker-cli version installed: %s-%s-%s.%s" % (h["name"], h["version"], h["release"], h["arch"],))
     print()
 except StopIteration:
     print("   Package not found")
+
+print("   Please wait 3 seconds...")
 time.sleep(3)    
 print()
 
