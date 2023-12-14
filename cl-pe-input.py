@@ -174,7 +174,7 @@ name()  # function: name
 while True:
 
     print()
-    user_input = input("   Press: p (previous) or n (next) or c (cancel) :    ")
+    user_input = input("   Enter: p (previous) or n (next) or c (cancel) :    ")
     print()
 
     try:
@@ -197,7 +197,7 @@ while True:
                 " #######################################################################"
             )
             print()
-            print("   c pressed - Cu later \33[32m :-) \33[0m")
+            print("   c entered - Cu later \33[32m :-) \33[0m")
             print()
             print(
                 " #######################################################################"
@@ -206,4 +206,3 @@ while True:
             break
     except StopIteration:
         break
-
