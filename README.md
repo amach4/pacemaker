@@ -10,5 +10,8 @@ of the Pacemaker cluster will be shown in a formatted output in the console.
 
 
 
-https://github.com/amach4/pacemaker/assets/23736066/8d925f8e-b521-4fdf-86dc-3b03f9742d4a
+
+https://github.com/amach4/pacemaker/assets/23736066/a06b1f64-d4c3-4600-bde0-62999e4d9224
+
+
 
