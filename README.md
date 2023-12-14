@@ -1,7 +1,7 @@
 
 This script was created to search for Pacemaker transition files in the current directory.
 
-After you started the script you can Enter: **p** (previous) or **n** (next) or **c** (cancel) to open the next or previous file.
+After you started the script you can Enter: **p** (previous) or **n** (next) or **c** (cancel) to open the previous or next file or to stop the script execution.
 
 The script is searching for files starting with "pe-input" and end with ".bz2".
 The files will be sorted on natural basis and a Python list will be created.
